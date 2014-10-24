@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.solr.client.solrj.beans.Field;
+import org.hbhk.test.solr.impl.SolrBase;
 
-public class ItemForSolrCommand implements Serializable {
+public class ItemForSolrCommand extends SolrBase implements Serializable {
 
 	/**
 	 * 
@@ -355,14 +356,6 @@ public class ItemForSolrCommand implements Serializable {
 //	private Boolean isGlobalFlag;
 	
 
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getCode() {
 		return code;
