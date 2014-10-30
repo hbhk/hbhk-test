@@ -107,6 +107,18 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- spring-end -->
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>hbhk-test</finalName>
