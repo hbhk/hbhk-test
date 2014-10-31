@@ -13,7 +13,7 @@ public class DefaultWatcher implements Watcher {
 	protected Log log = LogFactory.getLog(getClass());
 
 	public void process(WatchedEvent event) {
-		log.info("default-myWatcher path:" + event.getPath() + " state:"
+		log.info("default-watcher path:" + event.getPath() + " state:"
 				+ event.getState());
 	}
 
