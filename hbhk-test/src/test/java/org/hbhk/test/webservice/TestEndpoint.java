@@ -31,7 +31,6 @@ public class TestEndpoint extends TestCase {
         factory.setAddress(ADDRESS);
         IHelloWorld client = (IHelloWorld)factory.create();
         
-        client.sayHi("foo");
     }
 }
 
