@@ -24,4 +24,7 @@ public class HelloWorld implements IHelloWorld {
 		o.setType(1);
 		return o;
 	}
+	public void  init(){
+		System.out.println("init");
+	}
 }
