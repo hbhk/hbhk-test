@@ -1,0 +1,1 @@
+var value = $j.cookie("i18n_lang_key");
