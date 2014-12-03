@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>css3-media-queries-demo</title>
-<link rel="stylesheet" media="(min-width: 701px) and (max-width: 900px)" href="medium.css" type="text/css" />
+<link rel="stylesheet" media="(min-width: 701px) and (max-width: 900px)"
+	href="medium.css" type="text/css" />
 <style>
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td
 	{
@@ -82,6 +83,35 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 	}
 }
 </style>
+<style type="text/css">
+a{
+ text-decoration: none;
+}
+.func-button:hover {
+	color: #fff;
+	background: #27a1c5;
+}
+
+.func-button:active {
+	color: #ff6600;
+	background: #0d6780;
+}
+
+.func-button label {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 0 5px 0 0;
+}
+.func-button:link,.func-button:visited
+{
+    color:#069;
+    overflow:hidden;
+    margin:0 10px 0 0;
+    border-radius:12px;
+    padding: 4px 8px;
+}
+</style>
 </head>
 
 <body>
@@ -90,5 +120,6 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 		<div class="middleBox"></div>
 		<div class="rightBox"></div>
 	</div>
+	<a class="func-button" href="">test</a>
 </body>
 </html>
