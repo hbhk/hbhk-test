@@ -1,0 +1,64 @@
+.popBtn {
+	width: 18px;
+	height: 18px;
+	cursor: pointer;
+	float: right;
+	margin-left: 1px;
+	margin-top: 12px;
+	display: inline;
+	background: url(buttons.png) no-repeat;
+}
+
+.popClose {
+	margin-right: 10px;
+	width: 15px;
+	background-position: -39px 0
+}
+
+.popClose:hover {
+	background-position: -39px -20px
+}
+
+.popShow {
+	background-position: 0px 0;
+	margin-right: 10px;
+}
+
+.popShow:hover {
+	background-position: 0px -20px
+}
+
+.popHide {
+	background-position: -19px 0;
+	margin-right: 10px;
+}
+
+.popHide:hover {
+	background-position: -19px -20px
+}
+
+.clear {
+	clear: both;
+}
+
+#lmt {
+	width: 344px;
+	height: auto;
+	min-height: 300px;
+	padding: 3px;
+	overflow: hidden;
+	background-color: #FBFBFB;
+}
+
+#lmt .top {
+	width: 350px;
+	height: 36px;
+	line-height: 36px;
+	overflow: hidden;
+	text-indent: 10px;
+}
+
+#lmt .top span {
+	font-weight: bold;
+	font-size: 14px;
+}

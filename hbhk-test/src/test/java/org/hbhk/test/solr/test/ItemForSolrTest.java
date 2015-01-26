@@ -3,55 +3,32 @@ package org.hbhk.test.solr.test;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.CommonsHttpSolrServer;
+import org.apache.solr.client.solrj.impl.LBHttpSolrServer;
 import org.apache.solr.client.solrj.response.FacetField.Count;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-import org.apache.solr.common.SolrInputDocument;
 import org.junit.Test;
 
 /**
  * @date 2013年12月4日
  * @author huangjie
  */
-@SuppressWarnings("deprecation")
-public class SolrTest {
+public class ItemForSolrTest {
 	//指定solr服务器的地址
 	private final static String URL = "http://localhost:1234/solr";
 	
 	@Test
 	public void test1(){
-		//1、创建SolrServer对象，该对象有两个可以使用，都是线程安全的
-//		CommonsHttpSolrServer：启动web服务器使用的，通过http请求的
-//		EmbeddedSolrServer：内嵌式的，导入solr的jar包就可以使用了
-		try {
-			SolrServer server = new CommonsHttpSolrServer(URL);
-			//把查询出来的数据全部删除
-//			server.deleteByQuery("*:*");
-//			server.commit();
-			
-			SolrInputDocument doc = new SolrInputDocument();
-			//id是必填的，并且是String类型的
-			//<field name="id" type="string" indexed="true" stored="true" required="true" />
-			//id是唯一的主键，当多次添加的时候，最后添加的相同id会覆盖前面的域
-			doc.addField("id", "1");
-			doc.addField("title", "这是我的第一个solrj程序");
-			doc.addField("msg_content", "solr程序的运行");
-			server.add(doc);
-			server.commit();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (SolrServerException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	/**
@@ -61,24 +38,7 @@ public class SolrTest {
 	 */
 	@Test
 	public void test2() throws SolrServerException, IOException{
-		List<SolrInputDocument> docs = new ArrayList<SolrInputDocument>();
-		SolrInputDocument doc = new SolrInputDocument();
-		doc.addField("id", "2");
-		doc.addField("msg_title", "很好，solr可以工作了");
-		doc.addField("msg_content", "solr总算可以正式工作了");
-		
-		docs.add(doc);
-		
-		doc = new SolrInputDocument();
-		doc.addField("id", "3");
-		doc.addField("msg_title", "测试以下solr的添加");
-		doc.addField("msg_content", "看看能不能添加一个列表信息");
-		
-		docs.add(doc);
-		
-		SolrServer server = new CommonsHttpSolrServer(URL);
-		server.add(docs);
-		server.commit();
+
 	}
 	
 	/**
@@ -88,19 +48,40 @@ public class SolrTest {
 	 */
 	@Test
 	public void test3() throws SolrServerException, IOException{
-		List<Message> msgs = new ArrayList<Message>();
-		//多值域的添加使用数组
-		msgs.add(new Message("4","基于javabean的添加", new String[]{"javabean的添加附件","javabean的添加附件1"}));
-		msgs.add(new Message("5","基于javabean的列表数据的添加", new String[]{"通过对象完成添加的附件","通过对象完成添加的附件1"}));
+		List<ItemForSolrCommand> msgs = new ArrayList<ItemForSolrCommand>();
 		
-		SolrServer server = new CommonsHttpSolrServer(URL);
-		server.addBeans(msgs);
-		server.commit();
+		List<String> langs = new ArrayList<String>();
+		langs.add("zh_cn");
+		langs.add("en_us");
+		langs.add("jp");
+		for (int i = 0; i < 10; i++) {
+			ItemForSolrCommand msg = new ItemForSolrCommand();
+			msg.setId(Long.parseLong(i+""));
+			msg.setTitle("title");
+			Map<String, List<String>> map  = new HashMap<String, List<String>>();
+			for (int j = 0; j < langs.size(); j++) {
+				String lang = langs.get(j);
+				msg.setDynamicTitle(map);
+				List<String> val = new ArrayList<String>();
+				val.add("dynamic_title_"+lang+i);
+				map.put("dynamic_title_"+lang, val);
+			}
+			msg.setDynamicTitle(map);
+			msgs.add(msg);
+		}
+		try {
+			SolrServer server = new LBHttpSolrServer(URL);
+			server.addBeans(msgs);
+			server.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@Test
 	public void test4() throws SolrServerException, MalformedURLException{
-		SolrServer server = new CommonsHttpSolrServer(URL);
+		SolrServer server = new LBHttpSolrServer(URL);
 		//定义查询字符串
 		SolrQuery query = new SolrQuery("*:*");
 		//实现分页的查询
@@ -115,14 +96,47 @@ public class SolrTest {
 		}
 	}
 	
+	public static void add_FQAccurateForStringList(SolrQuery solrQuery,
+			List<String> words, String type) {
+		if (null != words && words.size() > 0) {
+			String fq_keyword = "";
+			int size = words.size();
+			for (int i = 0; i < size; i++) {
+				fq_keyword += type + ":" + words.get(i);
+				if (i < size - 1) {
+					fq_keyword += " OR ";
+				}
+			}
+			solrQuery.addFilterQuery(fq_keyword);
+		}
+	}
+	public static String escape(String s) {
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			// These characters are part of the query syntax and must be escaped
+			if (c == '\\' || c == '+' || c == '-' || c == '!' || c == '('
+					|| c == ')' || c == ':' || c == '^' || c == '[' || c == ']'
+					|| c == '\"' || c == '{' || c == '}' || c == '~'
+					|| c == '*' || c == '?' || c == '|' || c == '&') {
+				sb.append('\\');
+			}
+			sb.append(c);
+		}
+		return sb.toString();
+	}
 	@Test
 	public void test5() throws MalformedURLException, SolrServerException{
 		try {
-			SolrServer server = new CommonsHttpSolrServer(URL);
+			SolrServer server = new LBHttpSolrServer(URL);
 			//相当于QueryParser
-			SolrQuery query = new SolrQuery("allDisplay:true OR visiblePersons:16");
-			//query.addFilterQuery("visiblePersons:16");
-			query.setStart(1);
+			//SolrQuery query = new SolrQuery("keyword:dynamic_title_en_us1 OR keyword:dynamic_title_en_us2");
+			SolrQuery query = new SolrQuery("keyword:dynamic_title_en_us1 OR keyword:dynamic_title_en_us2");
+			List<String> words = new ArrayList<String>();
+			words.add("dynamic_title_en_us1");
+			words.add("dynamic_title_en_us2");
+			add_FQAccurateForStringList(query, words, "keyword");
+			query.setStart(0);
 			query.setRows(50);
 			QueryResponse res = server.query(query);
 			//可以直接查询相应的bean对象，但是不是很常用
@@ -130,14 +144,18 @@ public class SolrTest {
 			List<ItemForSolrCommand> list = res.getBeans(ItemForSolrCommand.class);
 			System.out.println("当前总数："+list.size());
 			for(ItemForSolrCommand msg : list){
-//				List<String>  plist = msg.getVisiblePersons();
-//				StringBuilder sb = new StringBuilder();
-//				if(plist!=null){
-//					for (String string : plist) {
-//						sb.append(string);
-//					}
-//				}
-				//System.out.println(msg.getId()+"#"+msg.getTitle()+"#"+sb.toString());
+				Map<String, List<String>>  plist = msg.getDynamicTitle();
+				StringBuilder sb = new StringBuilder();
+				Set<String> keys = plist.keySet();
+				if(plist!=null){
+					for (String key : keys) {
+						sb.append(plist.get(key).toString());
+						if(key.equals("dynamic_title_en_us")){
+							msg.setTitle(plist.get(key).toString());
+						}
+					}
+				}
+				System.out.println(msg.getId()+"#"+msg.getTitle()+"#"+sb.toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,0 +1,19 @@
+
+.sidebar-nav .view { display: none; }
+.sidebar-nav .remove{ display: none; }
+
+
+.demo .preview { display: none; }
+.demo .box .view { display: block; padding-top:30px;}
+
+.ui-draggable-dragging .view { display:block;}
+
+.column {
+	background-color: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px 4px 4px 4px;
+	margin: 15px 0;
+	padding: 39px 19px 24px;
+	position: relative;
+}
+

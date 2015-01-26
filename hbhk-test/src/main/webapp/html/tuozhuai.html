@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>A Simple Page with drag</title>
+<script type="text/javascript" src="../scripts/jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../scripts/jquery/jquery-ui.js"></script>
+<script type="text/javascript" src="../scripts/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="../scripts/tuozhuai/dom-drag.js"></script>
+<script type="text/javascript" src="../scripts/tuozhuai/tuozhuai.js"></script>
+</head>
+<body>
+	<!--  <form>
+		<textarea name="contenteditor" id="editor1" rows="10" cols="80">
+                This is my textarea to be replaced with CKEditor.
+           </textarea>
+
+	</form> -->
+	<div class="sidebar-nav"
+		style="width: 100%;">
+		
+		<div style="width: 20%;float: left; height: 1000px; background-color: #CCCCCC;">
+			<div class="box  column demo" style="width: 200px; height: 200px;background-color:gray;">
+			<a class="drag">拖动</a>	组件1
+			</div>
+			<div class="box column" style="width: 50px; height: 50px">组件2</div>
+			<div class="box column" ><img src="dom-drag/p.gif" /></div>	
+	
+			<div class="box column">
+				<p>Drag me around</p>
+			</div>
+			
+	<ul class="nav nav-list accordion-group">
+          <li class="nav-header">
+            <i class="icon-plus icon-white"></i> 布局设置 </li>
+          <li style="display: list-item;" class="rows" id="estRows">
+            <div class="lyrow ui-draggable"> <a href="http://www.bootcss.com/p/layoutit/#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">
+                <input value="12" type="text">
+              </div>
+              <div class="view">
+                <div class="row-fluid clearfix">
+                  <div class="span12 column"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lyrow ui-draggable"> <a href="http://www.bootcss.com/p/layoutit/#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">
+                <input value="6 6" type="text">
+              </div>
+              <div class="view">
+                <div class="row-fluid clearfix">
+                  <div class="span6 column"></div>
+                  <div class="span6 column"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lyrow ui-draggable"> <a href="http://www.bootcss.com/p/layoutit/#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">
+                <input value="8 4" type="text">
+              </div>
+              <div class="view">
+                <div class="row-fluid clearfix">
+                  <div class="span8 column"></div>
+                  <div class="span4 column"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lyrow ui-draggable"> <a href="http://www.bootcss.com/p/layoutit/#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">
+                <input value="4 4 4" type="text">
+              </div>
+              <div class="view">
+                <div class="row-fluid clearfix">
+                  <div class="span4 column"></div>
+                  <div class="span4 column"></div>
+                  <div class="span4 column"></div>
+                </div>
+              </div>
+            </div>
+            <div class="lyrow ui-draggable"> <a href="http://www.bootcss.com/p/layoutit/#close" class="remove label label-important"><i class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i class="icon-move"></i>拖动</span>
+              <div class="preview">
+                <input value="2 6 4" type="text">
+              </div>
+              <div class="view">
+                <div class="row-fluid clearfix">
+                  <div class="span2 column"></div>
+                  <div class="span6 column"></div>
+                  <div class="span4 column"></div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+		</div>
+	
+	</div>
+
+	<div class="demo ui-sortable" style="width: 80%; float: left; height: 1000px;background-color: #1D96DF;">
+		<div class="box column" style="width: 500px; height: 500px">组件2</div>
+
+	</div>
+
+
+</body>
+</html>

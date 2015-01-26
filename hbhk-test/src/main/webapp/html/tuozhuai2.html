@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>nebula可视化布局系统</title>
+
+<!-- Le styles -->
+<script type="text/javascript" src="../scripts/jquery/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../scripts/jquery/jquery-ui.js"></script>
+<link href="../scripts/jquery/layoutit.css" rel="stylesheet"> 
+<script type="text/javascript"
+	src="../scripts/jquery/jquery.htmlClean.js"></script>
+<script type="text/javascript" src="../scripts/jquery/scripts1.js"></script>
+<style type="text/css">
+/*  .column {
+	min-height: 50px;
+	min-width: 200px;
+	border: 1px solid gray;
+	margin: 5px 5px 5px 5px;
+	float: left;
+}
+
+.demo .preview {
+	display: none;
+}
+
+.demo {
+	border: 1px solid #DDDDDD;
+}
+
+.sidebar-nav .view {
+	display: none;
+}
+
+.demo .view {
+	display: block;
+}
+
+.sidebar-nav .remove {
+	display: none;
+}
+
+.demo .remove {
+	display: block;
+	float: left;
+	margin-right: 5px;
+}
+.drag .ui-draggable .view{
+	display: block;
+}  */
+</style>
+</head>
+
+<body style="min-height:2000px;">
+<div id="fudong" style="border:1px solid #454545; width:50px; height:100px; position: absolute; right: 20px; top: 100px;">
+    右侧悬浮层
+</div>
+	<div id="Float" class=""
+		style="width: 20%; background-color: #CCCCCC; position: relative;">
+		<div  class="sidebar-nav">
+			<ul class="nav nav-list accordion-group">
+				<li class="nav-header"><i class="icon-plus icon-white"></i>
+					布局设置</li>
+				<li style="display: list-item;" class="rows" id="estRows">
+					<div class="lyrow ui-draggable">
+						<a href="http://www.bootcss.com/p/layoutit/#close"
+							class="remove label label-important"><i
+							class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i
+							class="icon-move"></i>拖动</span>
+						<div class="preview">
+							<input value="12" type="text">
+						</div>
+						<div class="view">
+							<div class="row-fluid clearfix">
+								<div class="span12 column"></div>
+							</div>
+						</div>
+					</div>
+					<div class="lyrow ui-draggable">
+						<a href="http://www.bootcss.com/p/layoutit/#close"
+							class="remove label label-important"><i
+							class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i
+							class="icon-move"></i>拖动</span>
+						<div class="preview">
+							<input value="6 6" type="text">
+						</div>
+						<div class="view">
+							<div class="row-fluid clearfix">
+								<div class="span6 column"></div>
+								<div class="span6 column"></div>
+							</div>
+						</div>
+					</div>
+					<div class="lyrow ui-draggable">
+						<a href="http://www.bootcss.com/p/layoutit/#close"
+							class="remove label label-important"><i
+							class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i
+							class="icon-move"></i>拖动</span>
+						<div class="preview">
+							<input value="8 4" type="text">
+						</div>
+						<div class="view">
+							<div class="row-fluid clearfix">
+								<div class="span8 column"></div>
+								<div class="span4 column"></div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+	<!--/span-->
+	<div style="min-height: 749px; width: 100%; float: left;margin-left: 1%;"
+		class="demo ui-sortable">
+			<div class="lyrow ui-draggable">
+						<a href="http://www.bootcss.com/p/layoutit/#close"
+							class="remove label label-important"><i
+							class="icon-remove icon-white"></i>删除</a> <span class="drag label"><i
+							class="icon-move"></i>拖动</span>
+						<div class="preview">
+							<input value="2 6 4" type="text">
+						</div>
+						<div class="view">
+							<div class="row-fluid clearfix">
+								<div class="span2 column"></div>
+								<div class="span6 column"></div>
+								<div class="span4 column"></div>
+							</div>
+						</div>
+					</div>
+		
+		</div>
+</body>
+</html>

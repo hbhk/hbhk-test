@@ -1,6 +1,7 @@
 package org.hbhk.test.zookeeper;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -56,7 +57,7 @@ public class WatchMonitor implements Watcher {
 			while (isRun) {
 				isRun = false;
 				try {
-					Thread.sleep(1000);
+					TimeUnit.SECONDS.sleep(10);
 					jdbcTemplate.getDataSource().getConnection();
 				} catch (Exception e) {
 					isRun = true;
