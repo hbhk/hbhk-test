@@ -9,7 +9,6 @@ import javax.jms.MessageConsumer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 
-import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class Receiver implements Runnable {
@@ -34,9 +33,7 @@ public class Receiver implements Runnable {
 		Destination destination;
 		// 消费者，消息接收者
 		MessageConsumer consumer;
-		connectionFactory = new ActiveMQConnectionFactory(
-				ActiveMQConnection.DEFAULT_USER,
-				ActiveMQConnection.DEFAULT_PASSWORD, "tcp://localhost:61616");
+		connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
 		try {
 			// 构造从工厂得到连接对象
 			connection = connectionFactory.createConnection();
@@ -48,6 +45,20 @@ public class Receiver implements Runnable {
 			// 获取session注意参数值xingbo.xu-queue是一个服务器的queue，须在在ActiveMq的console配置
 			destination = session.createQueue("hbhk-1?consumer.exclusive=true");
 			consumer = session.createConsumer(destination);
+//			consumer.setMessageListener(new MessageListener() {
+//				public void onMessage(Message message) {
+//					if (null != message) {
+//						TextMessage tmsg = (TextMessage) message;
+//						try {
+//							System.out.println(Thread.currentThread().getName()
+//									+ " 收到消息" + tmsg.getText());
+//						} catch (JMSException e) {
+//							e.printStackTrace();
+//						}
+//					}
+//					
+//				}
+//			});
 			while (true) {
 				// 设置接收者接收消息的时间，为了便于测试，这里谁定为100s
 				TimeUnit.SECONDS.sleep(1);
