@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author lxy 类说明
  */
 public class InputStreamCacher {
 	private static final Logger log = LoggerFactory
