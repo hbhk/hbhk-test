@@ -7,11 +7,11 @@ import javax.jws.WebService;
 import org.hbhk.test.webservice.IHelloWorld;
 import org.hbhk.test.webservice.info.Order;
 
-@WebService()
+@WebService(endpointInterface="org.hbhk.test.webservice.IHelloWorld",targetNamespace="http://webservice.test.hbhk.org/")
 public class HelloWorld implements IHelloWorld {
 
 
-	public Order getOrder() {
+	public Order getOrder(String name) {
 		if("a".equals("a")){
 			throw new RuntimeException("aaaaaaaaaaaaaaaa");
 		}
