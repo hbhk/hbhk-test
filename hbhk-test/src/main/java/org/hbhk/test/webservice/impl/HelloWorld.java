@@ -11,7 +11,7 @@ import org.hbhk.test.webservice.info.Order;
 public class HelloWorld implements IHelloWorld {
 
 
-	public Order getOrder(String name) {
+	public String getOrder(String name) {
 		if("a".equals("a")){
 			throw new RuntimeException("aaaaaaaaaaaaaaaa");
 		}
@@ -22,7 +22,7 @@ public class HelloWorld implements IHelloWorld {
 		o.setSendTime(new Date());
 		o.setShop("shop");
 		o.setType(1);
-		return o;
+		return "name:"+name;
 	}
 	public void  init(){
 		System.out.println("init");

@@ -4,8 +4,6 @@ import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
-import org.hbhk.test.webservice.info.Order;
-
 
 @WebService
 public interface IHelloWorld {
@@ -22,5 +20,5 @@ public interface IHelloWorld {
      * @return Order
      */
     @WebResult(name="getOrder")
-	Order getOrder(@WebParam(name="name")String name);
+	String getOrder(@WebParam(name="name")String name);
 }
