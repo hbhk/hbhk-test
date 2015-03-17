@@ -7,7 +7,7 @@ import javax.jws.WebService;
 import org.hbhk.test.webservice.IHelloWorld;
 import org.hbhk.test.webservice.info.Order;
 
-@WebService
+@WebService()
 public class HelloWorld implements IHelloWorld {
 
 
